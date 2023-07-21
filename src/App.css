@@ -1,0 +1,50 @@
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+h1{
+  font-size: 2rem;
+}
+.App {
+  text-align: center;
+  width: 100%;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+}
+
+main {
+  padding: 2rem;
+}
+
+h2 {
+  border-bottom: 2px solid #333;
+  padding-bottom: 0.5rem;
+}
+
+#search {
+  margin-bottom: 1rem;
+}
+
+#search input {
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+#search button {
+  padding: 0.5rem 1rem;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+#weatherData p {
+  margin: 0.5rem 0;
+}
