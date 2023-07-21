@@ -1,6 +1,6 @@
-# EnergYES - A Renewable Energy Planner
+# EnergEYES - A Renewable Energy Planner
 
-EnergYES is a web application that serves as a renewable energy planner, providing weather data and energy recommendations based on specific weather conditions. It utilizes the OpenWeatherMap API to fetch weather data and then offers insights into utilizing renewable energy sources like solar panels, wind turbines, and hydro services efficiently. By providing users with relevant information, EnergYES aims to promote the adoption of renewable energy solutions for a sustainable future.
+EnergEYES is a web application that serves as a renewable energy planner, providing weather data and energy recommendations based on specific weather conditions. It utilizes the OpenWeatherMap API to fetch weather data and then offers insights into utilizing renewable energy sources like solar panels, wind turbines, and hydro services efficiently. By providing users with relevant information, EnergYES aims to promote the adoption of renewable energy solutions for a sustainable future.
 
 ## Features
 
@@ -25,4 +25,4 @@ EnergYES is a web application that serves as a renewable energy planner, providi
 
 ---
 
-Thank you for checking out EnergYES! We hope this application helps you make informed decisions about utilizing renewable energy based on weather conditions in your area. If you have any feedback or questions, please don't hesitate to reach out. Happy renewable energy planning! 🌞💨💧
+Thank you for checking out EnergEYES! We hope this application helps you make informed decisions about utilizing renewable energy based on weather conditions in your area. If you have any feedback or questions, please don't hesitate to reach out. Happy renewable energy planning! 🌞💨💧
