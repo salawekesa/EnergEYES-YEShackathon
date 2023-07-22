@@ -78,7 +78,7 @@ async function displayEnergyRecommendations(data) {
       const recommendations = [solarRecommendation, windRecommendation, hydroRecommendation];
       setEnergyRecommendations(recommendations);
     } else {
-      setEnergyRecommendations(['Cloudy weather may not be ideal for solar panel usage. Windy weather is suitable for wind turbines.No precipitation, consider other energy sources.']);
+      setEnergyRecommendations(['Cloudy weather may not be ideal for solar panel     . \n  Windy weather is suitable for wind turbines . \n Precipitation low, consider other energy sources.']);
     }
   } catch (error) {
     console.error('Error updating energy recommendations:', error);
@@ -173,7 +173,7 @@ function handleSearch() {
           </ul>
           <p className="hrs">
           <div id="recommendations">
-          {energyRecommendations[0].split('.').map((recommendations, index) => (
+          {energyRecommendations.map((recommendations, index) => (
             <li key={index}>{recommendations.trim()}</li>
           ))}
         </div>
