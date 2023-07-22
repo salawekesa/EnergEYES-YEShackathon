@@ -51,11 +51,9 @@ async function displayEnergyRecommendations(data) {
       const windSpeed = data.wind.speed;
       const precipitation = data.rain['1h'];
 
-      console.log(windspeed);
-
-      let solarRecommendation = '';
-      let windRecommendation = '';
-      let hydroRecommendation = '';
+      let solarRecommendation = 'Cloudy weather may not be ideal for solar panel usage.';
+      let windRecommendation = 'Windy weather is suitable for wind turbines.';
+      let hydroRecommendation = 'No precipitation, consider other energy sources.';
 
 
       if (cloudiness < 20) {
@@ -80,7 +78,7 @@ async function displayEnergyRecommendations(data) {
       const recommendations = [solarRecommendation, windRecommendation, hydroRecommendation];
       setEnergyRecommendations(recommendations);
     } else {
-      setEnergyRecommendations(['Energy recommendations based on weather data will be displayed here.']);
+      setEnergyRecommendations(['Cloudy weather may not be ideal for solar panel usage. Windy weather is suitable for wind turbines.No precipitation, consider other energy sources.']);
     }
   } catch (error) {
     console.error('Error updating energy recommendations:', error);
@@ -100,34 +98,92 @@ function handleSearch() {
 
   return (
     <div className="App">
-      <header>
-        <h1>EnergYES</h1>
-        <p>A Renewable Energy Planner</p>
-        <div id="search">
-          <input type="text" value={cityInput} onChange={(e) => setCityInput(e.target.value)} placeholder="Enter city name" />
-          <button onClick={handleSearch}>Search</button>
+
+    <header>
+      <div>
+      <h1>EnergYES</h1>
+      <p>A Renewable Energy Planner</p>
+      </div>
+      
+      <div id="search">
+        <input type="text" value={cityInput} onChange={(e) => setCityInput(e.target.value)} placeholder="Enter city name" />
+        <button onClick={handleSearch}>Search</button>
+    </div>
+    </header>
+
+    <div className="container">
+
+ 
+
+    
+    <div className="section">
+      <div className="inner">
+        <picture>
+          
+        </picture>
+        <p>Weather</p>
+        <p>Report for</p>
+        <h1 id="location">{`${weatherData.name}, ${weatherData.sys?.country || ''}`}</h1>
+
+      </div>
+      <ul className="days">
+        <li>Daily</li>
+        <li>Weekly</li>
+        <li className="weekly">Monthly</li>
+      </ul>
+    </div>
+
+    <div className="main">
+        <div className="Bottom-1">
+        <div className="inner">
+          <ul>
+            <li className="title">Temperature</li>
+            <li></li>
+          </ul>
+          <p className="hrs">{weatherData.main?.temp}°C</p>
+          
         </div>
-        <p id="location">{`${weatherData.name}, ${weatherData.sys?.country || ''}`}</p>
-      </header>
-      <main>
-        <section>
-          <h2>Weather Forecast</h2>
-          <div id="weatherData">
-            <p>Temperature: {weatherData.main?.temp}°C</p>
-            <p>Weather: {weatherData.weather?.[0]?.description}</p>
-            <p>Wind Speed: {weatherData.wind?.speed} m/s</p>
-            <p>Cloudiness: {weatherData.clouds?.all}%</p>
-          </div>
-        </section>
-        <section>
-          <h2>Energy Source Recommendations</h2>
+        </div>
+        <div className="Top-2">
+        <div className="inner">
+          <ul>
+            <li className="title">Cloudiness</li>
+            <li></li>
+          </ul>
+          <p className="hrs">{weatherData.clouds?.all}%</p>
+          
+      
+        </div></div>
+        <div className="Top-3">
+        <div className="inner">
+          <ul>
+            <li className="title">Wind Speed</li>
+            <li></li>
+          </ul>
+          <p className="hrs">{weatherData.wind?.speed} m/s</p>
+          
+      
+        </div></div>
+        
+        <div className="Bottom-2">
+        <div className="inner">
+          <ul>
+            <li className="title">Energy Recommendation</li>
+            <li></li>
+          </ul>
+          <p className="hrs">
           <div id="recommendations">
-            {energyRecommendations.map((recommendations, index) => (
-              <p key={index}>{recommendations}</p>
-            ))}
-          </div>
-        </section>
-      </main>
+          {energyRecommendations[0].split('.').map((recommendations, index) => (
+            <li key={index}>{recommendations.trim()}</li>
+          ))}
+        </div>
+          </p>
+         
+      
+        </div></div>
+    
+    </div>
+  </div>
     </div>                        
   );
 }
