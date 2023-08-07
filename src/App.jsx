@@ -43,48 +43,86 @@ function App() {
       console.error('Error updating weather and recommendations:', error);
     }
   }
-
-async function displayEnergyRecommendations(data) {
-  try {
-    if (data.clouds && data.clouds.all !== undefined && data.wind && data.wind.speed !== undefined && data.rain && data.rain['1h'] !== undefined) {
-      const cloudiness = data.clouds.all;
-      const windSpeed = data.wind.speed;
-      const precipitation = data.rain['1h'];
-
-      let solarRecommendation = 'Cloudy weather may not be ideal for solar panel usage.';
-      let windRecommendation = 'Windy weather is suitable for wind turbines.';
-      let hydroRecommendation = 'No precipitation, consider other energy sources.';
-
-
-      if (cloudiness < 20) {
-        solarRecommendation = 'It\'s a good day to use solar panels for maximum efficiency.';
-      } else {
-        solarRecommendation = 'Cloudy weather may not be ideal for solar panel usage.';
-      }
   
-      if (windSpeed > 5) {
-        windRecommendation = 'Windy weather is suitable for wind turbines.';
-      } else {
-        windRecommendation = 'Wind speed is low for wind turbine usage.';
-      }
+  async function displayEnergyRecommendations(weatherData) {
+    try {
+      if (weatherData.clouds && weatherData.wind) {
+        const cloudiness = weatherData.clouds?.all
+        console.log(cloudiness);
+        const windSpeed = weatherData.wind?.speed
+        console.log(windSpeed);
+    
   
-      if (precipitation > 0) {
-        hydroRecommendation = 'Precipitation makes it a good time to utilize hydro services.';
-      } else {
-        hydroRecommendation = 'No precipitation, consider other energy sources.';
-      }
+        let solarRecommendation = '';
+        let windRecommendation = '';
+        let hydroRecommendation = '';
   
+        if (cloudiness < 20) {
+          solarRecommendation = 'It\'s a good day to use solar panels for maximum efficiency.';
+        } else {
+          solarRecommendation = 'Cloudy weather and temperature may not be ideal for solar panel usage.';
+        }
+    
+        if (windSpeed > 5) {
+          windRecommendation = 'Windy weather is suitable for wind turbines.';
+        } else {
+          windRecommendation = 'Wind speed is low for wind turbine usage.';
+        }
+  
+  
+        const recommendations = [solarRecommendation, windRecommendation];
+        setEnergyRecommendations(recommendations);
 
-      const recommendations = [solarRecommendation, windRecommendation, hydroRecommendation];
-      setEnergyRecommendations(recommendations);
-    } else {
-      setEnergyRecommendations(['Cloudy weather may not be ideal for solar panel     . \n  Windy weather is suitable for wind turbines . \n Precipitation low, consider other energy sources.']);
+      } else {
+        setEnergyRecommendations(['Weather data is incomplete to provide energy recommendations.']);
+      }
+    } catch (error) {
+      console.error('Error updating energy recommendations:', error);
+      setEnergyRecommendations(['Error updating energy recommendations.']);
     }
-  } catch (error) {
-    console.error('Error updating energy recommendations:', error);
-    setEnergyRecommendations(['Error updating energy recommendations.']);
   }
-}
+  
+// async function displayEnergyRecommendations(data) {
+//   try {
+//     if (data.clouds && data.clouds.all !== undefined && data.wind && data.wind.speed !== undefined && data.rain && data.rain['1h'] !== undefined) {
+//       const cloudiness = data.clouds.all;
+//       const windSpeed = data.wind.speed;
+//       const precipitation = data.rain['1h'];
+
+//       let solarRecommendation = 'Cloudy weather may not be ideal for solar panel usage.';
+//       let windRecommendation = 'Windy weather is suitable for wind turbines.';
+//       let hydroRecommendation = 'No precipitation, consider other energy sources.';
+
+
+//       if (cloudiness < 20) {
+//         solarRecommendation = 'It\'s a good day to use solar panels for maximum efficiency.';
+//       } else {
+//         solarRecommendation = 'Cloudy weather may not be ideal for solar panel usage.';
+//       }
+  
+//       if (windSpeed > 5) {
+//         windRecommendation = 'Windy weather is suitable for wind turbines.';
+//       } else {
+//         windRecommendation = 'Wind speed is low for wind turbine usage.';
+//       }
+  
+//       if (precipitation > 0) {
+//         hydroRecommendation = 'Precipitation makes it a good time to utilize hydro services.';
+//       } else {
+//         hydroRecommendation = 'No precipitation, consider other energy sources.';
+//       }
+  
+
+//       const recommendations = [solarRecommendation, windRecommendation, hydroRecommendation];
+//       setEnergyRecommendations(recommendations);
+//     } else {
+//       setEnergyRecommendations(['Cloudy weather may not be ideal for solar panel     . \n  Windy weather is suitable for wind turbines . \n Precipitation low, consider other energy sources.']);
+//     }
+//   } catch (error) {
+//     console.error('Error updating energy recommendations:', error);
+//     setEnergyRecommendations(['Error updating energy recommendations.']);
+//   }
+// }
 
 function handleSearch() {
   const trimmedCity = cityInput.trim();
